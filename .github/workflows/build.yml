@@ -21,7 +21,7 @@ jobs:
       matrix:
         fedora-version: [39, 40, stable, testing]
         kmod-name: [nvidia]
-        kmod-version: [550]
+        kmod-version: [555]
     env:
       IMAGE_NAME: akmods/${{ matrix.kmod-name }}
       FEDORA_VERSION: ${{ matrix.fedora-version }}
@@ -91,6 +91,7 @@ jobs:
             FEDORA_VERSION=${{ env.FEDORA_VERSION }}
             KERNEL_VERSION=${{ env.COREOS_KERNEL }}
             REPOSITORY_TYPE=${{ matrix.repository-type }}
+
 
   check:
     needs: [build]
