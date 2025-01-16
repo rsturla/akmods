@@ -21,3 +21,5 @@ RUN chmod +x /tmp/akmods/scripts/*.sh && \
   /tmp/akmods/scripts/00-preinstall.sh && \
   /tmp/akmods/scripts/01-install.sh && \
   /tmp/akmods/scripts/02-postinstall.sh
+
+RUN bootc container lint
