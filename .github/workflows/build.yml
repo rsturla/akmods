@@ -86,7 +86,7 @@ jobs:
           file: ./Containerfile
           context: .
           push: ${{ github.event_name != 'pull_request' }}
-          platforms: ${{ format('linux/{0}', env.ARCH }}
+          platforms: ${{ format('linux/{0}', matrix.arch) }}
           tags: ${{ steps.generate-meta.outputs.concat_tags }}
           build-args: |
             KMOD_NAME=${{ matrix.kmod-name }}
@@ -100,7 +100,7 @@ jobs:
           file: ./Containerfile.test
           context: .
           push: false
-          platforms: ${{ format('linux/{0}', env.ARCH }}
+          platforms: ${{ format('linux/{0}', matrix.arch) }}
           tags: test
           build-args: |
             CACHE_IMAGE=${{ steps.generate-meta.outputs.primary_tag }}
