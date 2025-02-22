@@ -5,7 +5,7 @@ ARG KMOD_TAG=latest
 ARG CACHE_IMAGE=${KMOD_IMAGE}:${KMOD_TAG}
 
 FROM ${CACHE_IMAGE} AS kmod-cache
-FROM quay.io/fedora-ostree-desktops/base:${FEDORA_VERSION}
+FROM quay.io/fedora-ostree-desktops/base-atomic:${FEDORA_VERSION}
 
 RUN dnf install -y \
   https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
