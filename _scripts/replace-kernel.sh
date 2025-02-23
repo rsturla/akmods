@@ -25,12 +25,14 @@ ARCH=$(uname -m)
 KERNEL_VERSION="$(echo "$KERNEL_VERSION" | rev | cut -d . -f 2- | rev).${ARCH}"
 KERNEL_MAJOR_MINOR_PATCH=$(echo "$KERNEL_VERSION" | cut -d '-' -f 1)
 KERNEL_RELEASE="$(echo "$KERNEL_VERSION" | cut -d - -f 2 | cut -d . -f 1).$(echo "$KERNEL_VERSION" | cut -d - -f 2 | cut -d . -f 2)"
+
+dnf remove -y kernel{,-core,-modules,-modules-core,-modules-extra,-devel,-devel-matched,-uki-virt}
 dnf install -y \
   https://kojipkgs.fedoraproject.org//packages/kernel/"$KERNEL_MAJOR_MINOR_PATCH"/"$KERNEL_RELEASE"/"$ARCH"/kernel-"$KERNEL_VERSION".rpm \
+  https://kojipkgs.fedoraproject.org//packages/kernel/"$KERNEL_MAJOR_MINOR_PATCH"/"$KERNEL_RELEASE"/"$ARCH"/kernel-core-"$KERNEL_VERSION".rpm \
   https://kojipkgs.fedoraproject.org//packages/kernel/"$KERNEL_MAJOR_MINOR_PATCH"/"$KERNEL_RELEASE"/"$ARCH"/kernel-modules-"$KERNEL_VERSION".rpm \
   https://kojipkgs.fedoraproject.org//packages/kernel/"$KERNEL_MAJOR_MINOR_PATCH"/"$KERNEL_RELEASE"/"$ARCH"/kernel-modules-core-"$KERNEL_VERSION".rpm \
   https://kojipkgs.fedoraproject.org//packages/kernel/"$KERNEL_MAJOR_MINOR_PATCH"/"$KERNEL_RELEASE"/"$ARCH"/kernel-modules-extra-"$KERNEL_VERSION".rpm \
   https://kojipkgs.fedoraproject.org//packages/kernel/"$KERNEL_MAJOR_MINOR_PATCH"/"$KERNEL_RELEASE"/"$ARCH"/kernel-devel-"$KERNEL_VERSION".rpm \
   https://kojipkgs.fedoraproject.org//packages/kernel/"$KERNEL_MAJOR_MINOR_PATCH"/"$KERNEL_RELEASE"/"$ARCH"/kernel-devel-matched-"$KERNEL_VERSION".rpm \
-  https://kojipkgs.fedoraproject.org//packages/kernel/"$KERNEL_MAJOR_MINOR_PATCH"/"$KERNEL_RELEASE"/"$ARCH"/kernel-uki-virt-"$KERNEL_VERSION".rpm \
-  https://kojipkgs.fedoraproject.org//packages/kernel/"$KERNEL_MAJOR_MINOR_PATCH"/"$KERNEL_RELEASE"/"$ARCH"/kernel-core-"$KERNEL_VERSION".rpm
+  https://kojipkgs.fedoraproject.org//packages/kernel/"$KERNEL_MAJOR_MINOR_PATCH"/"$KERNEL_RELEASE"/"$ARCH"/kernel-uki-virt-"$KERNEL_VERSION".rpm
