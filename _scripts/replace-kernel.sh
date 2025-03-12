@@ -24,7 +24,7 @@ esac
 ARCH=$(uname -m)
 KERNEL_VERSION="$(echo "$KERNEL_VERSION" | rev | cut -d . -f 2- | rev).${ARCH}"
 KERNEL_MAJOR_MINOR_PATCH=$(echo "$KERNEL_VERSION" | cut -d '-' -f 1)
-KERNEL_RELEASE="$(echo "$KERNEL_VERSION" | cut -d - -f 2 | cut -d . -f 1).$(echo "$KERNEL_VERSION" | cut -d - -f 2 | cut -d . -f 2)"
+KERNEL_RELEASE="$(echo "$KERNEL_VERSION" | cut -d - -f 2 | rev | cut -d . -f 2- | rev)"
 
 dnf remove -y kernel{,-core,-modules,-modules-core,-modules-extra,-devel,-devel-matched,-uki-virt}
 dnf install -y \

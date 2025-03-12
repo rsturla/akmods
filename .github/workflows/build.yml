@@ -23,7 +23,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        fedora-version: [41, stable]
+        fedora-version: [41, 42, stable]
         kmod-name: [nvidia-open]
         arch: [amd64, arm64]
     env:
