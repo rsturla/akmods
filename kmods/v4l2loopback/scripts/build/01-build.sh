@@ -4,9 +4,10 @@ set -oeux pipefail
 
 RELEASE="$(rpm -E '%fedora.%_arch')"
 
-# Build NVIDIA drivers
+# Build v4l2loopback
 dnf install -y \
-  akmod-v4l2loopback-*.fc${RELEASE}
+  akmod-v4l2loopback-*.fc${RELEASE} \
+  help2man
 
 KERNEL_VERSION="$(rpm -q kernel-core --queryformat '%{VERSION}-%{RELEASE}.%{ARCH}')"
 
