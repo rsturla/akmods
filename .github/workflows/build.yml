@@ -23,7 +23,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        fedora-version: [41, 42, stable]
+        fedora-version: [42, stable]
         kmod-name: [nvidia-open, v4l2loopback]
         arch: [amd64, arm64]
     env:
@@ -113,7 +113,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        fedora-version: [41, 42, stable]
+        fedora-version: [42, stable]
         kmod-name: [nvidia-open, v4l2loopback]
     env:
       IMAGE_NAME: akmods/${{ matrix.kmod-name }}
