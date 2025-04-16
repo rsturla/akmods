@@ -2,4 +2,5 @@
 
 set -ouex pipefail
 
-dnf install -y /tmp/akmods/rpms/kmod-v4l2loopback-*.rpm
+dnf install -y \
+  /tmp/akmods/rpms/kmod-v4l2loopback-*.rpm
