@@ -12,7 +12,7 @@ KERNEL_VERSION="$(rpm -q kernel-core --queryformat '%{VERSION}-%{RELEASE}.%{ARCH
 
 akmods --force --kernels "${KERNEL_VERSION}" --kmod "v4l2loopback"
 
-modinfo /usr/lib/modules/${KERNEL}/extra/v4l2loopback/v4l2loopback.ko.xz >/dev/null ||
+modinfo /usr/lib/modules/${KERNEL_VERSION}/extra/v4l2loopback/v4l2loopback.ko.xz >/dev/null ||
   (find /var/cache/akmods/v4l2loopback/ -name \*.log -print -exec cat {} \; && exit 1)
 
 mkdir -p /var/cache/rpms

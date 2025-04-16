@@ -1,5 +1,5 @@
-ARG FEDORA_VERSION=41
-ARG KMOD_NAME=nvidia
+ARG FEDORA_VERSION=42
+ARG KMOD_NAME=v4l2loopback
 ARG KMOD_VERSION=
 ARG FEDORA_KERNEL_FLAVOR=${FEDORA_VERSION}
 
@@ -13,8 +13,8 @@ ARG FEDORA_KERNEL_FLAVOR
 COPY _certs /tmp/certs
 COPY _scripts /tmp/scripts
 COPY kmods/${KMOD_NAME}/scripts/build /tmp/scripts
-COPY kmods/${KMOD_NAME}/rpm-specs* /tmp/rpm-specs
-COPY kmods/${KMOD_NAME}/files* /tmp/files
+#COPY kmods/${KMOD_NAME}/rpm-specs* /tmp/rpm-specs
+#COPY kmods/${KMOD_NAME}/files* /tmp/files
 
 RUN chmod +x /tmp/scripts/*.sh && \
   /tmp/scripts/replace-kernel.sh ${FEDORA_KERNEL_FLAVOR} && \
