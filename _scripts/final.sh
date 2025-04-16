@@ -9,7 +9,7 @@ for rpm in $(find /var/cache/rpms -name '*.rpm'); do
 done
 
 sed -i -e 's/args = \["rpmbuild", "-bb"\]/args = \["rpmbuild", "-bb", "--buildroot", "#{build_path}\/BUILD"\]/g' /usr/local/share/gems/gems/fpm-*/lib/fpm/package/rpm.rb
-kernel_version=$(rpm -q --qf "%{VERSION}-%{RELEASE}.%{ARCH}\n" "${KERNEL_NAME}" | head -n 1)
+kernel_version=$(rpm -q --qf "%{VERSION}-%{RELEASE}.%{ARCH}\n" kernel-core | head -n 1)
 for rpm in $(find /rpms -type f -name \*.rpm); do
     basename=$(basename ${rpm})
     name=${basename%%-${kernel_version}*}
