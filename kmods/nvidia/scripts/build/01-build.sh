@@ -11,8 +11,8 @@ dnf install -y \
 KERNEL_VERSION="$(rpm -q kernel-core --queryformat '%{VERSION}-%{RELEASE}.%{ARCH}')"
 NVIDIA_AKMOD_VERSION="$(basename "$(rpm -q "akmod-nvidia" --queryformat '%{VERSION}-%{RELEASE}')" ".fc${RELEASE%%.*}")"
 
-# Build the proprietary kernel module
-sed -i "s/^MODULE_VARIANT=.*/MODULE_VARIANT=kernel/" /etc/nvidia/kernel.conf
+# Build the open source kernel module
+sed -i "s/^MODULE_VARIANT=.*/MODULE_VARIANT=kernel-open/" /etc/nvidia/kernel.conf
 
 akmods --force --kernels "${KERNEL_VERSION}" --kmod "nvidia"
 
@@ -49,7 +49,7 @@ for rpm in $(find ${ADDONS_DIR}/rpmbuild/RPMS/"$(uname -m)"/ -type f -name \*.rp
     cp "${rpm}" /var/cache/rpms/;
 done
 
-for rp in $(find ${ADDONS_DIR}/rpmbuild/RPMS/noarch/ -type f -name \*.rpm); do
+for rpm in $(find ${ADDONS_DIR}/rpmbuild/RPMS/noarch/ -type f -name \*.rpm); do
     cp "${rpm}" /var/cache/rpms/;
 done
 

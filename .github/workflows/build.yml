@@ -24,7 +24,7 @@ jobs:
       fail-fast: false
       matrix:
         fedora-version: [42, stable]
-        kmod-name: [nvidia-open, v4l2loopback]
+        kmod-name: [nvidia, v4l2loopback]
         arch: [amd64, arm64]
     env:
       IMAGE_NAME: akmods/${{ matrix.kmod-name }}
@@ -114,7 +114,7 @@ jobs:
       fail-fast: false
       matrix:
         fedora-version: [42, stable]
-        kmod-name: [nvidia-open, v4l2loopback]
+        kmod-name: [nvidia, v4l2loopback]
     env:
       IMAGE_NAME: akmods/${{ matrix.kmod-name }}
       FEDORA_VERSION: ${{ matrix.fedora-version }}
