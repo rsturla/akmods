@@ -46,6 +46,14 @@ fi
 # Combine common and architecture-specific packages into a single install command
 dnf install -y "${COMMON_PKGS[@]}" "${ARCH_PKGS[@]}"
 
+# Ensure the version of the Nvidia module matches the driver
+KMOD_VERSION="$(rpm -q --queryformat '%{VERSION}-%{RELEASE}' kmod-nvidia)"
+DRIVER_VERSION="$(rpm -q --queryformat '%{VERSION}-%{RELEASE}' nvidia-driver)"
+if [ "$KMOD_VERSION" != "$DRIVER_VERSION" ]; then
+    echo "Error: kmod-nvidia version ($KMOD_VERSION) does not match nvidia-driver version ($DRIVER_VERSION)"
+    exit 1
+fi
+
 # Copy and update modprobe configuration for Nvidia
 cp /etc/modprobe.d/nvidia-modeset.conf /usr/lib/modprobe.d/nvidia-modeset.conf
 sed -i 's@omit_drivers@force_drivers@g' /usr/lib/dracut/dracut.conf.d/99-nvidia.conf
