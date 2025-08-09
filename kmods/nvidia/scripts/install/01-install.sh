@@ -1,13 +1,24 @@
 #!/bin/sh
 
 set -ouex pipefail
-source /tmp/akmods/info/nvidia-vars
+
+# Check if a build context was provided
+if [ $# -lt 1 ]; then
+    echo "Usage: $0 <build-context-path>"
+    exit 1
+fi
+
+BUILD_CONTEXT="$1"
+
+# Load Nvidia variables
+source "${BUILD_CONTEXT}"/info/nvidia-vars
 
 ARCH=$(uname -m)
 
-dnf install -y /tmp/akmods/rpms/nvidia-addons-*.rpm
+# Install Nvidia addons from the build context
+dnf install -y "${BUILD_CONTEXT}"/rpms/nvidia-addons-*.rpm
 
-# Enable nvidia-container-toolkit repo
+# Enable Nvidia-related repositories
 sed -i 's@enabled=0@enabled=1@g' /etc/yum.repos.d/nvidia-container-toolkit.repo
 sed -i 's@enabled=0@enabled=1@g' /etc/yum.repos.d/negativo17-fedora-nvidia.repo
 
@@ -21,7 +32,7 @@ COMMON_PKGS=(
     nvidia-driver-cuda
     nvidia-settings
     nvidia-container-toolkit
-    /tmp/akmods/rpms/kmod-nvidia-${KERNEL_VERSION}-${NVIDIA_AKMOD_VERSION}.fc${RELEASE}.rpm
+    "${BUILD_CONTEXT}"/rpms/kmod-nvidia-${KERNEL_VERSION}-${NVIDIA_AKMOD_VERSION}.fc${RELEASE}.rpm
 )
 
 # Declare an array for architecture-specific packages
@@ -36,17 +47,17 @@ if [ "$ARCH" = "x86_64" ]; then
         nvidia-driver-libs.i686
     )
 elif [ "$ARCH" = "aarch64" ]; then
-    # No additional packages for aarch64, but you could add some if needed
+    # No additional packages for aarch64
     ARCH_PKGS=()
 else
     echo "Unsupported architecture: $ARCH"
     exit 1
 fi
 
-# Combine common and architecture-specific packages into a single install command
+# Install all packages
 dnf install -y "${COMMON_PKGS[@]}" "${ARCH_PKGS[@]}"
 
-# Ensure the version of the Nvidia module matches the driver
+# Ensure the version of the Nvidia module matches the driver
 KMOD_VERSION="$(rpm -q --queryformat '%{VERSION}-%{RELEASE}' kmod-nvidia)"
 DRIVER_VERSION="$(rpm -q --queryformat '%{VERSION}-%{RELEASE}' nvidia-driver)"
 if [ "$KMOD_VERSION" != "$DRIVER_VERSION" ]; then
