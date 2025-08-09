@@ -11,12 +11,12 @@ fi
 BUILD_CONTEXT="$1"
 
 # Load Nvidia variables
-source "${BUILD_CONTEXT}/info/nvidia-vars"
+source "${BUILD_CONTEXT}"/info/nvidia-vars
 
 ARCH=$(uname -m)
 
 # Install Nvidia addons from the build context
-dnf install -y "${BUILD_CONTEXT}/rpms/nvidia-addons-*.rpm"
+dnf install -y "${BUILD_CONTEXT}"/rpms/nvidia-addons-*.rpm
 
 # Enable Nvidia-related repositories
 sed -i 's@enabled=0@enabled=1@g' /etc/yum.repos.d/nvidia-container-toolkit.repo
@@ -32,7 +32,7 @@ COMMON_PKGS=(
     nvidia-driver-cuda
     nvidia-settings
     nvidia-container-toolkit
-    "${BUILD_CONTEXT}/rpms/kmod-nvidia-${KERNEL_VERSION}-${NVIDIA_AKMOD_VERSION}.fc${RELEASE}.rpm"
+    "${BUILD_CONTEXT}"/rpms/kmod-nvidia-${KERNEL_VERSION}-${NVIDIA_AKMOD_VERSION}.fc${RELEASE}.rpm
 )
 
 # Declare an array for architecture-specific packages

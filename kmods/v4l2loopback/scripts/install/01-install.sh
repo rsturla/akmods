@@ -11,5 +11,5 @@ fi
 BUILD_CONTEXT="$1"
 
 dnf install -y --enablerepo=terra \
-  "${BUILD_CONTEXT}/rpms/kmod-v4l2loopback-*.rpm" \
+  "$BUILD_CONTEXT"/rpms/kmod-v4l2loopback-*.rpm \
   v4l2loopback-kmod-common
