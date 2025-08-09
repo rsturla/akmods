@@ -16,6 +16,7 @@ COPY --from=kmod-cache /info /tmp/akmods/info
 COPY --from=kmod-cache /scripts /tmp/akmods/scripts
 
 RUN chmod +x $AKMODS_DIR/scripts/*.sh && \
+  ls -la $AKMODS_DIR/rpms/
   $AKMODS_DIR/scripts/00-preinstall.sh $AKMODS_DIR && \
   $AKMODS_DIR/scripts/01-install.sh $AKMODS_DIR && \
   $AKMODS_DIR/scripts/02-postinstall.sh $AKMODS_DIR
