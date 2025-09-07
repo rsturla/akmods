@@ -45,6 +45,8 @@ if [ "$ARCH" = "x86_64" ]; then
         mesa-vulkan-drivers.i686
         nvidia-driver-cuda-libs.i686
         nvidia-driver-libs.i686
+        egl-wayland2.x86_64
+        egl-wayland2.i686
     )
 elif [ "$ARCH" = "aarch64" ]; then
     # No additional packages for aarch64
