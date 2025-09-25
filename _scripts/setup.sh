@@ -22,7 +22,7 @@ dnf install -y \
   mock \
   ruby-devel
 
-gem install fpm
+gem install fpm --no-user-install
 
 if [[ ! -s "/tmp/certs/private_key.priv" ]]; then
     echo "WARNING: Using test signing key. Run './generate-akmods-key' for production builds."
