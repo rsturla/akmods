@@ -3,7 +3,7 @@ ARG KMOD_NAME=v4l2loopback
 ARG KMOD_VERSION=
 ARG FEDORA_KERNEL_FLAVOR=${FEDORA_VERSION}
 
-FROM quay.io/fedora-ostree-desktops/base-atomic:${FEDORA_VERSION} AS builder
+FROM quay.io/fedora/fedora:${FEDORA_VERSION} AS builder
 
 ARG FEDORA_VERSION
 ARG KMOD_NAME
