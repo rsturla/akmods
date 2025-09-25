@@ -22,6 +22,7 @@ dnf install -y \
   mock \
   ruby-devel
 
+mkdir -p /root/.local/share/gem/ruby/cache
 gem install fpm --no-user-install
 
 if [[ ! -s "/tmp/certs/private_key.priv" ]]; then
