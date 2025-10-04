@@ -21,3 +21,4 @@ for rpm in $(find /rpms -type f -name \*.rpm); do
 done
 
 ls -l /rpms
+ls -l /certs
