@@ -2,7 +2,7 @@
 
 set -oeux pipefail
 
-mkdir -p /rpms
+mkdir -p /rpms /certs
 for rpm in $(find /var/cache/rpms -name '*.rpm'); do
   echo "Copying $rpm..."
   cp -a $rpm /rpms
@@ -19,6 +19,8 @@ for rpm in $(find /rpms -type f -name \*.rpm); do
         echo "Skipping $basename rebuild as the name does not contain $kernel_version"
     fi
 done
+
+install -Dm644 /etc/pki/akmods/certs/public_key.der /certs/eternal-akmods.der
 
 ls -l /rpms
 ls -l /certs
