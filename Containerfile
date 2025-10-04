@@ -32,4 +32,5 @@ ARG KMOD_NAME
 
 COPY kmods/${KMOD_NAME}/scripts/install /scripts
 COPY --from=builder /rpms /rpms
+COPY --from=builder /certs /certs
 COPY --from=builder /var/cache/akmods/ /info/

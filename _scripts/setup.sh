@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 
-# TODO:
-# - add support for switching out the kernel versions
-
 set -oeux pipefail
 
 ### PREPARE REPOS

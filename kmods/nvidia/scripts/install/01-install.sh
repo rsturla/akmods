@@ -70,3 +70,7 @@ fi
 # Copy and update modprobe configuration for Nvidia
 cp /etc/modprobe.d/nvidia-modeset.conf /usr/lib/modprobe.d/nvidia-modeset.conf
 sed -i 's@omit_drivers@force_drivers@g' /usr/lib/dracut/dracut.conf.d/99-nvidia.conf
+
+# Copy akmods certs
+mkdir -p /etc/pki/akmods/certs/
+cp "${BUILD_CONTEXT}"/certs/* /etc/pki/akmods/certs/
