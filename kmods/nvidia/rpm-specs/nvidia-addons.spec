@@ -32,19 +32,16 @@ sed -i 's@enabled=1@enabled=0@g' %{buildroot}%{_datadir}/eternal-linux/%{_syscon
 sed -i 's@enabled=1@enabled=0@g' %{buildroot}%{_datadir}/eternal-linux/%{_sysconfdir}/yum.repos.d/negativo17-fedora-nvidia.repo
 
 install -Dm0644 %{buildroot}%{_datadir}/eternal-linux/%{_sysconfdir}/yum.repos.d/negativo17-fedora-nvidia.repo     %{buildroot}%{_sysconfdir}/yum.repos.d/negativo17-fedora-nvidia.repo
-install -Dm0644 %{buildroot}%{_datadir}/eternal-linux/%{_sysconfdir}/pki/akmods/certs/eternal-akmods.der           %{buildroot}%{_sysconfdir}/pki/akmods/certs/eternal-akmods.der
 install -Dm0644 %{buildroot}%{_datadir}/eternal-linux/%{_sysconfdir}/yum.repos.d/nvidia-container-toolkit.repo     %{buildroot}%{_sysconfdir}/yum.repos.d/nvidia-container-toolkit.repo
 install -Dm0644 %{buildroot}%{_datadir}/eternal-linux/%{_datadir}/selinux/packages/nvidia-container.pp             %{buildroot}%{_datadir}/selinux/packages/nvidia-container.pp
 install -Dm0644 %{buildroot}%{_datadir}/eternal-linux/%{_unitdir}/eternal-nvctk-cdi.service                        %{buildroot}%{_unitdir}/eternal-nvctk-cdi.service
 
 %files
 %attr(0644,root,root) %{_datadir}/eternal-linux/%{_sysconfdir}/yum.repos.d/negativo17-fedora-nvidia.repo
-%attr(0644,root,root) %{_datadir}/eternal-linux/%{_sysconfdir}/pki/akmods/certs/eternal-akmods.der
 %attr(0644,root,root) %{_datadir}/eternal-linux/%{_sysconfdir}/yum.repos.d/nvidia-container-toolkit.repo
 %attr(0644,root,root) %{_datadir}/eternal-linux/%{_datadir}/selinux/packages/nvidia-container.pp
 %attr(0644,root,root) %{_datadir}/eternal-linux/%{_unitdir}/eternal-nvctk-cdi.service
 %attr(0644,root,root) %{_sysconfdir}/yum.repos.d/negativo17-fedora-nvidia.repo
-%attr(0644,root,root) %{_sysconfdir}/pki/akmods/certs/eternal-akmods.der
 %attr(0644,root,root) %{_sysconfdir}/yum.repos.d/nvidia-container-toolkit.repo
 %attr(0644,root,root) %{_datadir}/selinux/packages/nvidia-container.pp
 %attr(0644,root,root) %{_unitdir}/eternal-nvctk-cdi.service
