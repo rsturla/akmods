@@ -14,9 +14,11 @@ RUN sed -i 's@enabled=0@enabled=1@g' /etc/yum.repos.d/fedora-{updates-archive,ci
 COPY --from=kmod-cache /rpms /tmp/akmods/rpms
 COPY --from=kmod-cache /info /tmp/akmods/info
 COPY --from=kmod-cache /scripts /tmp/akmods/scripts
+COPY --from=kmod-cache /certs /tmp/akmods/certs
 
 RUN chmod +x $AKMODS_DIR/scripts/*.sh && \
   ls -la $AKMODS_DIR/rpms/ && \
+  ls -la $AKMODS_DIR/certs/ && \
   $AKMODS_DIR/scripts/00-preinstall.sh $AKMODS_DIR && \
   $AKMODS_DIR/scripts/01-install.sh $AKMODS_DIR && \
   $AKMODS_DIR/scripts/02-postinstall.sh $AKMODS_DIR
