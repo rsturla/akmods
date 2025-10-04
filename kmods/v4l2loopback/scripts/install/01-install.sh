@@ -15,4 +15,5 @@ dnf install -y --enablerepo=terra \
   v4l2loopback-kmod-common
 
 # Copy akmods certs
+mkdir -p /etc/pki/akmods/certs/
 cp "${BUILD_CONTEXT}"/certs/* /etc/pki/akmods/certs/
