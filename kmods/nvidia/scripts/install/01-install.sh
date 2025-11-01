@@ -31,7 +31,6 @@ COMMON_PKGS=(
     nvidia-persistenced
     nvidia-driver-cuda
     nvidia-settings
-    nvidia-container-toolkit
     "${BUILD_CONTEXT}"/rpms/kmod-nvidia-${KERNEL_VERSION}-${NVIDIA_AKMOD_VERSION}.fc${RELEASE}.rpm
 )
 
@@ -58,6 +57,11 @@ fi
 
 # Install all packages
 dnf install -y "${COMMON_PKGS[@]}" "${ARCH_PKGS[@]}"
+
+# Install nvidia-container-toolkit
+echo "%_pkgverify_level none" > /etc/rpm/macros.verify
+dnf install -y nvidia-container-toolkit
+rm /etc/rpm/macros.verify
 
 # Ensure the version of the Nvidia module matches the driver
 KMOD_VERSION="$(rpm -q --queryformat '%{VERSION}' kmod-nvidia)"
