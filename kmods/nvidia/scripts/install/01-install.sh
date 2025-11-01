@@ -59,10 +59,9 @@ fi
 dnf install -y "${COMMON_PKGS[@]}" "${ARCH_PKGS[@]}"
 
 # Install nvidia-container-toolkit
-cp /etc/rpm/macros.verify /etc/rpm/macros.verify.bak
-echo "%_pkgverify_level none" >/etc/rpm/macros.verify
+echo "%_pkgverify_level none" > /etc/rpm/macros.verify
 dnf install -y nvidia-container-toolkit
-mv /etc/rpm/macros.verify.bak /etc/rpm/macros.verify
+rm /etc/rpm/macros.verify
 
 # Ensure the version of the Nvidia module matches the driver
 KMOD_VERSION="$(rpm -q --queryformat '%{VERSION}' kmod-nvidia)"
