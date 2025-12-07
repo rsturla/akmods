@@ -6,7 +6,8 @@ RELEASE="$(rpm -E '%fedora.%_arch')"
 
 # Build NVIDIA drivers
 dnf install -y \
-    akmod-nvidia*.fc${RELEASE}
+    akmod-nvidia*.fc${RELEASE} \
+    gcc gcc-c++
 
 KERNEL_VERSION="$(rpm -q kernel-core --queryformat '%{VERSION}-%{RELEASE}.%{ARCH}')"
 NVIDIA_AKMOD_VERSION="$(basename "$(rpm -q "akmod-nvidia" --queryformat '%{VERSION}-%{RELEASE}')" ".fc${RELEASE%%.*}")"
