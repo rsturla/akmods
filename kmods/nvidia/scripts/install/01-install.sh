@@ -71,8 +71,7 @@ if [ "$KMOD_VERSION" != "$DRIVER_VERSION" ]; then
     exit 1
 fi
 
-# Copy and update modprobe configuration for Nvidia
-cp /etc/modprobe.d/nvidia-modeset.conf /usr/lib/modprobe.d/nvidia-modeset.conf
+# Force Nvidia drivers into the initrd
 sed -i 's@omit_drivers@force_drivers@g' /usr/lib/dracut/dracut.conf.d/99-nvidia.conf
 
 # Copy akmods certs
