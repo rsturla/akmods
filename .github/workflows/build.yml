@@ -60,7 +60,7 @@ jobs:
           echo "${{ secrets.AKMODS_PRIVATE_KEY }}" > _certs/private_key.priv
 
       - name: Login to GHCR
-        uses: docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9 # v3
+        uses: docker/login-action@b45d80f862d83dbcd57f89517bcf500b2ab88fb2 # v4
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
@@ -138,7 +138,7 @@ jobs:
           podman manifest add --all ${{ env.IMAGE_NAME }} ${{ env.IMAGE_REGISTRY }}/${{ env.IMAGE_NAME }}:${{ matrix.fedora-version }}-amd64
 
       - name: Login to GHCR
-        uses: docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9 # v3
+        uses: docker/login-action@b45d80f862d83dbcd57f89517bcf500b2ab88fb2 # v4
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
