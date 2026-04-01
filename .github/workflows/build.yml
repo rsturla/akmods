@@ -68,7 +68,7 @@ jobs:
 
       - name: Get CoreOS Kernel Information
         if: ${{ env.FEDORA_VERSION == 'stable' || env.FEDORA_VERSION == 'testing' }}
-        uses: rsturla/eternal-main/.github/actions/get-coreos-kernel@main
+        uses: rsturla/eternal-main/.github/actions/get-coreos-kernel@f0554fe4fddf2e3aea7ff711494f6eeb63f59554 # main
         id: get-coreos-kernel
         with:
           coreos-stream: ${{ env.FEDORA_VERSION }}
