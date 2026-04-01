@@ -59,7 +59,9 @@ fi
 dnf install -y "${COMMON_PKGS[@]}" "${ARCH_PKGS[@]}"
 
 # Install nvidia-container-toolkit
-echo "%_pkgverify_level none" > /etc/rpm/macros.verify
+sed -i \
+  -e 's|^sslcacert=.*|sslcacert=/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem|' \
+  /etc/yum.repos.d/nvidia-container-toolkit.repo
 dnf install -y nvidia-container-toolkit
 rm /etc/rpm/macros.verify
 
