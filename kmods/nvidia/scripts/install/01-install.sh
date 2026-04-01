@@ -63,7 +63,6 @@ sed -i \
   -e 's|^sslcacert=.*|sslcacert=/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem|' \
   /etc/yum.repos.d/nvidia-container-toolkit.repo
 dnf install -y nvidia-container-toolkit
-rm /etc/rpm/macros.verify
 
 # Ensure the version of the Nvidia module matches the driver
 KMOD_VERSION="$(rpm -q --queryformat '%{VERSION}' kmod-nvidia)"
