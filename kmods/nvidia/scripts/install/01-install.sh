@@ -27,6 +27,7 @@ COMMON_PKGS=(
     libnvidia-fbc
     libva-nvidia-driver
     nvidia-driver
+    nvidia-driver-common
     nvidia-modprobe
     nvidia-persistenced
     nvidia-driver-cuda
@@ -40,10 +41,7 @@ ARCH_PKGS=()
 # Add architecture-specific packages based on detected architecture
 if [ "$ARCH" = "x86_64" ]; then
     ARCH_PKGS=(
-        libnvidia-ml.i686
         mesa-vulkan-drivers.i686
-        nvidia-driver-cuda-libs.i686
-        nvidia-driver-libs.i686
         egl-wayland2.x86_64
         egl-wayland2.i686
     )
