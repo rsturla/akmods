@@ -9,8 +9,6 @@ FROM quay.io/fedora-ostree-desktops/base-atomic:${FEDORA_VERSION}
 
 ARG AKMODS_DIR=/tmp/akmods
 
-RUN sed -i 's@enabled=0@enabled=1@g' /etc/yum.repos.d/fedora-{updates-archive,cisco-openh264}.repo
-
 COPY --from=kmod-cache /rpms /tmp/akmods/rpms
 COPY --from=kmod-cache /info /tmp/akmods/info
 COPY --from=kmod-cache /scripts /tmp/akmods/scripts
