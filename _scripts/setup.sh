@@ -8,8 +8,15 @@ RELEASE="$(rpm -E '%fedora')"
 
 dnf install -y fedora-repos-archive
 
-sed -i 's@enabled=1@enabled=0@g' /etc/yum.repos.d/fedora-cisco-openh264.repo
-sed -i 's@enabled=0@enabled=1@g' /etc/yum.repos.d/fedora-updates-archive.repo
+# Fedora 45 moved the default repository files from /etc/yum.repos.d to
+# /usr/share/dnf5/repos.d.
+repo_dir=/etc/yum.repos.d
+if [[ ! -f "${repo_dir}/fedora-cisco-openh264.repo" ]]; then
+  repo_dir=/usr/share/dnf5/repos.d
+fi
+
+sed -i 's@enabled=1@enabled=0@g' "${repo_dir}/fedora-cisco-openh264.repo"
+sed -i 's@enabled=0@enabled=1@g' "${repo_dir}/fedora-updates-archive.repo"
 
 # enable RPMs with alternatives to create them in this image build
 mkdir -p /var/lib/alternatives

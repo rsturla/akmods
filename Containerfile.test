@@ -1,4 +1,4 @@
-ARG FEDORA_VERSION=44
+ARG FEDORA_VERSION=45
 ARG KMOD_NAME=nvidia
 ARG KMOD_IMAGE=${KMOD_NAME}-kmod
 ARG KMOD_TAG=latest
@@ -8,8 +8,6 @@ FROM ${CACHE_IMAGE} AS kmod-cache
 FROM quay.io/fedora-ostree-desktops/base-atomic:${FEDORA_VERSION}
 
 ARG AKMODS_DIR=/tmp/akmods
-
-RUN sed -i 's@enabled=0@enabled=1@g' /etc/yum.repos.d/fedora-{updates-archive,cisco-openh264}.repo
 
 COPY --from=kmod-cache /rpms /tmp/akmods/rpms
 COPY --from=kmod-cache /info /tmp/akmods/info
